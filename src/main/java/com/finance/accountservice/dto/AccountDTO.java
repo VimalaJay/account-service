@@ -12,6 +12,7 @@ public class AccountDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 8887372389750785064L;
+	private String accountNo;
 	private String firstName;
 	private String surName;
 	private Double balance;
