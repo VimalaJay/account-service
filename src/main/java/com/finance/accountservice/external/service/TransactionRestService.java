@@ -35,8 +35,16 @@ public class TransactionRestService {
 		headers.setAccept(acceptableMediaTypes);
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 
-		ResponseEntity<Object> response = restTemplate.exchange(transactionServiceURL + "/transaction/" + accountId,
-				HttpMethod.GET, entity, Object.class);
+		log.info("Invoke transaction service call to fetch transaction");
+		ResponseEntity<Object> response = null;
+		try {
+			response = restTemplate.exchange(transactionServiceURL + "/transaction/" + accountId,
+					HttpMethod.GET, entity, Object.class);
+		} catch (Throwable throwable) {
+			log.error("Transaction service is down");
+			throw new ServiceException("Transaction service is down.");
+		}
+		log.info("transaction service call successfully completed");
 		
 		ObjectMapper mapper = new ObjectMapper();
 		List<FundTransactionDTO> result = mapper.convertValue(response.getBody(),
@@ -52,7 +60,7 @@ public class TransactionRestService {
    	 }
 
 	@CircuitBreaker(name = "transaction", fallbackMethod = "creatTransactionFallback")
-	public void createTransaction(String accountId, Double amount) {
+	public Response createTransaction(String accountId, Double amount) {
 
 		List<MediaType> acceptableMediaTypes = new ArrayList<>();
 		acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
@@ -67,8 +75,16 @@ public class TransactionRestService {
 
 		String url = transactionServiceURL + "/add?accountId=" + accountId + "&amount=" + amount;
 
-		ResponseEntity<Object> response = restTemplate.exchange(url, HttpMethod.POST, request, Object.class);
-		System.out.println("test");
+		log.info("Invoke transaction service call to create transaction");
+		try {
+			ResponseEntity<Object> response = restTemplate.exchange(url, HttpMethod.POST, request, Object.class);
+		} catch (Throwable throwable) {
+			log.error("Transaction service call failed");
+			throw new ServiceException("Transaction service call failed");
+		}
+		log.info("Transaction service call successfully completed");
+
+		return new Response("Transaction created", HttpStatus.OK);
 
 	}
 
