@@ -94,6 +94,7 @@ public class AccountServiceImpl implements AccountService {
 		List<AccountDTO> accountDtos = new ArrayList<>();
 		accounts.forEach(account -> {
 			AccountDTO accountDTO = new AccountDTO();
+			accountDTO.setAccountNo(account.getAccountNo());
 			accountDTO.setFirstName(customerEntity.get().getFirstName());
 			accountDTO.setSurName(customerEntity.get().getLastName());
 			
