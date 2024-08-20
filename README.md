@@ -1,7 +1,7 @@
 # account-service
 
 ## Description
-Account service will expose the api to create new current account and it fetch the details of customer accounts. It communicate with transaction service to save and fetch the complete transaction details. 
+Account service will expose the api to create new current account and it fetch the details of customer accounts and transactions. It communicate with transaction service to save and fetch the complete transaction details. 
 
 ## Setup
 Install java 17 and maven 3.9.8. To build this project require maven 3.8 or later and Java 17 or later.
