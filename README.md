@@ -4,9 +4,9 @@
 Account service will expose the api to create new current account and it fetch the details of customer accounts. It communicate with transaction service to save and fetch the complete transaction details. 
 
 ## Setup
-To build this project require maven 3.8 or later and Java 17 or later.
+Install java 17 and maven 3.9.8. To build this project require maven 3.8 or later and Java 17 or later.
 
-## Build and Run the application
+## Build and Run the application in local
 ```bash
 # Clone the repository
 git clone https://github.com/VimalaJay/account-service
