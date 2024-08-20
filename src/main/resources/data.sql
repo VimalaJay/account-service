@@ -1,0 +1,4 @@
+insert into CUSTOMER (customer_id, first_name, last_name, email, mobile) values ('2456987', 'Vimala', 'Arunachalam', 'vimala.arunachalam@gmail.com', '767548963');
+insert into CUSTOMER (customer_id, first_name, last_name, email, mobile) values ('2456979', 'Vimala', 'Arunachalam', 'vimala.arunachalam@gmail.com', '767548966');
+insert into CUSTOMER (customer_id, first_name, last_name, email, mobile) values ('2456989', 'Vimala', 'Arunachalam', 'vimala.arunachalam@gmail.com', '767548967');
+insert into CUSTOMER (customer_id, first_name, last_name, email, mobile) values ('2456990', 'Vimala', 'Arunachalam', 'vimala.arunachalam@gmail.com', '767548968');

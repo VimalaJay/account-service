@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-6">
+            <h2>Create New Account</h2>
+            <form action="#" th:action="@{/api/v1/accounts/createAccount}" th:object="${Response}" method="GET">
+                <div class="form-group">
+                    <label for="description">Customer ID</label>
+                    <input class="form-control"
+                           type="text"
+                           th:field="*{customerId}"
+                           id="customerId"
+                           placeholder="Customer ID"
+                    >
+                    
+                    <div class="form-group">
+                    <label for="description">Initial Credit</label>
+                    <input class="form-control"
+                           type="text"
+                           th:field="*{initialCredit}"
+                           id="intialCredit"
+                           placeholder="Initial Credit"
+                    >
+
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="bi bi-plus-square-fill"></i> Create New Account
+                    </button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/bootstrap/5.2.2/js/bootstrap.min.js}"></script>
+</body>
+</html>
