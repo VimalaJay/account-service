@@ -77,7 +77,6 @@ public class AccountServiceImpl implements AccountService {
 		}
 		
 		log.info("Successfully created current account");
-		responseMsg = "Acc No:" + account.getAccountNo() + " " + responseMsg;
 		Response response = new Response(responseMsg, HttpStatus.CREATED);
 		return response;
 	}
