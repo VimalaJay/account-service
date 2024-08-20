@@ -59,6 +59,7 @@ public class AccountServiceTest {
 	@Test
 	public void createAccount_With_intitalCredit() throws Exception {
 		Mockito.when(util.generateAccNo()).thenReturn("25698746");
+		Mockito.when(transactionService.createTransaction(Mockito.anyString(), Mockito.anyDouble())).thenReturn(new Response("Success", HttpStatus.OK));
 		Response response = accountService.createAccount("56978545", 1000.0);
 		assertThat(response.getHttpStatus().equals(HttpStatus.CREATED)).isTrue();
 	}
