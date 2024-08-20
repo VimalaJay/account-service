@@ -25,6 +25,7 @@ public class TransactionRestService {
 	@Value("${transaction.service.url}")
 	private String transactionServiceURL;
 
+	@CircuitBreaker(name = "create-account", fallbackMethod = "getTransactionFallback")
 	public List<FundTransactionDTO> getTransactions(String accountId) {
 
 		List<MediaType> acceptableMediaTypes = new ArrayList<>();
@@ -45,6 +46,12 @@ public class TransactionRestService {
 
 	}
 
+	public List<FundTransactionDTO> getTransactionFallback(Throwable throwable) {
+    		log.info("Into create account fallback method");
+    		return new ArrayList<FundTransactionDTO>();
+   	 }
+
+	@CircuitBreaker(name = "transaction", fallbackMethod = "creatTransactionFallback")
 	public void createTransaction(String accountId, Double amount) {
 
 		List<MediaType> acceptableMediaTypes = new ArrayList<>();
@@ -63,6 +70,11 @@ public class TransactionRestService {
 		ResponseEntity<Object> response = restTemplate.exchange(url, HttpMethod.POST, request, Object.class);
 		System.out.println("test");
 
+	}
+
+	public Response creatTransactionFallback(Throwable throwable) {
+		log.info("Into fetch transaction fallback method");
+		return new Response("Failure", HttpStatus.OK);
 	}
 
 }
