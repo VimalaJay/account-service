@@ -60,11 +60,16 @@ public class AccountServiceImpl implements AccountService {
 		account.setAccountNo(util.generateAccNo());
 		account.setAccountName(customer.getFirstName() + " " + customer.getLastName());
 		account.setAccountType(AccountType.CURRENT.name());
-		
+
+		String responseMsg = "Account and credit transaction created successfully!";
 		try {
 			log.info("Persist account and transaction data to DB");
 			if (initialCredit != null && initialCredit > 0) {
-				transactionService.createTransaction(account.getAccountNo(), initialCredit);
+				Response response = transactionService.createTransaction(account.getAccountNo(), initialCredit);
+
+				if (response.getMessage().equals("Failure")) {
+					responseMsg = "Account Created but Credit Transaction Failed!";
+				}
 			}
 			accountRepo.save(account);
 		} catch (Exception e) {
@@ -72,7 +77,8 @@ public class AccountServiceImpl implements AccountService {
 		}
 		
 		log.info("Successfully created current account");
-		Response response = new Response("Account created successfully!", HttpStatus.CREATED);
+		responseMsg = "Acc No:" + account.getAccountNo() + " " + responseMsg;
+		Response response = new Response(responseMsg, HttpStatus.CREATED);
 		return response;
 	}
 
