@@ -22,6 +22,9 @@ mvn clean install
 # Deploy the project
 mvn spring-boot:run
 
+# check database console
+http://localhost:8080/h2-console
+
 # Run below api in postman or browser
 GET : http://localhost:8080/api/v1/accounts/createAccount?customerId=2456989&initialCredit=250
 GET : http://localhost:8080/api/v1/accounts/customer/2456989
