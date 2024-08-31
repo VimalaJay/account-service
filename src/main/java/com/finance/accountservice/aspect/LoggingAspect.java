@@ -14,19 +14,22 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class LoggingAspect {
-	
+
 	@Around("execution(* com.finance.accountservice..*.*(..))")
-    public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
-		log.info("Entering Method: [" + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName() + "]");
-        Object result;
-        try {
-            result = joinPoint.proceed();
-    		log.info("Exiting Method: [" + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName() + "]");
-        } catch (Throwable error) {
-    		log.info("Exception in Method: [" + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName() + "]");
-            throw error;
+	public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+		log.info("Entering Method: [" + joinPoint.getSignature().getDeclaringTypeName() + "."
+				+ joinPoint.getSignature().getName() + "]");
+		Object result;
+		try {
+			result = joinPoint.proceed();
+			log.info("Exiting Method: [" + joinPoint.getSignature().getDeclaringTypeName() + "."
+					+ joinPoint.getSignature().getName() + "]");
+		} catch (Throwable error) {
+			log.info("Exception in Method: [" + joinPoint.getSignature().getDeclaringTypeName() + "."
+					+ joinPoint.getSignature().getName() + "]");
+			throw error;
 		}
-        return result;
-    }
-	
+		return result;
+	}
+
 }
