@@ -1,20 +1,18 @@
 package com.finance.accountservice.exceptions;
 
-import org.springframework.http.HttpStatus;
-
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class ServiceException extends RuntimeException {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1310465043435526188L;
+	private static final long serialVersionUID = -3486215774998951732L;
+
 	private String message;
-	private HttpStatus errorCode;
+	private int errorCode;
 
 	public ServiceException(String message) {
 		super(message);
