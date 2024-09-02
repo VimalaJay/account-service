@@ -42,7 +42,7 @@ public class TransactionRestService {
 		headers.setAccept(acceptableMediaTypes);
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 
-		log.info("Invoke transaction service call to fetch transaction");
+		log.info("Invoke transaction service call to fetch transaction data");
 		ResponseEntity<Object> response = null;
 		try {
 			response = restTemplate.exchange(transactionServiceURL + "/transaction/" + accountId,
@@ -91,13 +91,13 @@ public class TransactionRestService {
 		}
 		log.info("Transaction service call successfully completed");
 
-		return new Response("Transaction created", HttpStatus.OK);
+		return new Response("Transaction created", HttpStatus.OK.value(), null);
 
 	}
 
 	public Response creatTransactionFallback(Throwable throwable) {
 		log.info("Into fetch transaction fallback method");
-		return new Response("Failure", HttpStatus.OK);
+		return new Response("Failure", HttpStatus.OK.value(), null);
 	}
 
 }
