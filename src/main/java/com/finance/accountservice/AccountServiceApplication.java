@@ -6,6 +6,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy
+@EnableScheduling
 public class AccountServiceApplication {
 
 	public static void main(String[] args) {
