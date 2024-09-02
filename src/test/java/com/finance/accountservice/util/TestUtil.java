@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.finance.accountservice.Entity.Account;
 import com.finance.accountservice.Entity.Customer;
+import com.finance.accountservice.dto.AccountDTO;
 import com.finance.accountservice.dto.FundTransactionDTO;
 
 @Component
@@ -50,10 +51,16 @@ public class TestUtil {
 		transaction.setTransactionStatus("SUCCESS");
 		transaction.setAmount(253.0);
 		transaction.setCreatedDate(Instant.now());
-		transaction.setUpdatedDate(Instant.now());
 		
 		
 		transactions.add(transaction);
 		return transactions;
+	}
+	
+	public List<AccountDTO> fetchData(Object data) {
+		List<AccountDTO> accounts = (List<AccountDTO>) data;
+		if (accounts.isEmpty())
+			accounts = new ArrayList<AccountDTO>();
+		return accounts;
 	}
 }
