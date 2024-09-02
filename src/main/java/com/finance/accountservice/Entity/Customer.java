@@ -19,7 +19,7 @@ public class Customer {
 	private String email;
 	private String mobile;
 	
-	@OneToMany(mappedBy="customer", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="customer", fetch = FetchType.LAZY)
     private Set<Account> accounts;
 	
 }
