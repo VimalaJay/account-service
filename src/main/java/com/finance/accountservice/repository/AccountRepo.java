@@ -10,5 +10,7 @@ import com.finance.accountservice.Entity.Customer;
 public interface AccountRepo extends JpaRepository<Account, String> {
 
 	Set<Account> findByCustomer(Customer customer);
-	
+
+	boolean existsAccountByCustomerAndAccountType(Customer customer, String accountType);
+
 }
