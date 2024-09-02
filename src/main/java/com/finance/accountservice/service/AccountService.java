@@ -1,14 +1,13 @@
 package com.finance.accountservice.service;
 
-import java.util.List;
-
-import com.finance.accountservice.dto.AccountDTO;
 import com.finance.accountservice.util.Response;
 
 public interface AccountService {
-	
-	Response createAccount(String customerId, Double initialCredit) throws Exception;
-	
-	List<AccountDTO> getAccountsByCustomerId(String customerId);
+
+	Response openAccount(String customerId, Double initialCredit) throws Exception;
+
+	Response getAccountsByCustomerId(String customerId);
+
+	Response getAccountDetails(String accountId);
 
 }
